@@ -50,7 +50,7 @@ module RVideo # :nodoc:
         raise ArgumentError, "Must supply either an input file or a pregenerated response" if options[:raw_response].nil? and file.nil?
       end
 
-      metadata = /(Input \#.*)\nMust/m.match(@raw_response)
+      metadata = metadata_match
       
       if /Unknown format/i.match(@raw_response) || metadata.nil?
         @unknown_format = true
@@ -515,6 +515,18 @@ module RVideo # :nodoc:
     end
     
     private
+    
+    def metadata_match
+      [
+        /(Input \#.*)\nMust/m,    # ffmpeg
+        /(Input \#.*)\nAt least/m # ffmpeg macports
+      ].each do |rgx| 
+        if md=rgx.match(@raw_response)
+          return md
+        end 
+      end
+      nil
+    end
 
     def bitrate_match
       /bitrate: ([0-9\.]+)\s*(.*)\s+/.match(@raw_metadata)
