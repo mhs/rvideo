@@ -21,8 +21,8 @@ require File.join(File.dirname(__FILE__), 'lib', 'rvideo', 'version')
 
 AUTHOR = 'Jonathan Dahl (Slantwise Design)'  # can also be an array of Authors
 EMAIL = "jon@slantwisedesign.com"
-DESCRIPTION = "Inspect and process video or audio files"
-GEM_NAME = 'rvideo' # what ppl will type to install your gem
+DESCRIPTION = "Inspect and process video or audio files."
+GEM_NAME = 'mhs-rvideo' # what ppl will type to install your gem
 
 @config_file = "~/.rubyforge/user-config.yml"
 @config = nil
@@ -43,8 +43,8 @@ Run 'rubyforge setup' to prepare your env for access to Rubyforge
 end
 
 RUBYFORGE_PROJECT = 'rvideo' # The unix name for your project
-HOMEPATH = "http://#{RUBYFORGE_PROJECT}.rubyforge.org"
-DOWNLOAD_PATH = "http://rubyforge.org/projects/#{RUBYFORGE_PROJECT}"
+HOMEPATH = "http://github.com/mhs/rvideo"
+DOWNLOAD_PATH = "http://github.com/mhs/rvideo"
 
 NAME = "rvideo"
 REV = nil 
