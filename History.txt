@@ -1,3 +1,10 @@
+== 0.9.6 2010-01-04 (forked, mhs release)
+
+* Updated RVideo::Inspect#capture_frame to raise RVideo::TranscoderError::OuptutFileNotFound error when ffmpeg fails to extract a screenshot from a given movie.
+
+* Updated inspector to support ffmpeg output from the macports ffmpeg.
+
+
 == 0.9.5 2008-09-09
 Note:
 * Moving hosting to GitHub.
