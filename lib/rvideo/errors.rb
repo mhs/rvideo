@@ -9,6 +9,9 @@ module RVideo
     class InputFileNotFound < TranscoderError
     end
     
+    class OutputFileNotFound < TranscoderError
+    end
+    
     class UnexpectedResult < TranscoderError
     end
     

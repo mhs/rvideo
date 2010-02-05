@@ -161,6 +161,20 @@ module RVideo # :nodoc:
       command = "ffmpeg -i #{@full_filename} -ss #{t} -t 00:00:01 -r 1 -vframes 1 -f image2 #{output_file}"
       Transcoder.logger.info("\nCreating Screenshot: #{command}\n")
       frame_result = `#{command} 2>&1`
+      
+      # Different versions of ffmpeg report errors differently when a screenshot cannot be extracted from
+      # a video given its set of options. Some versions return a non-zero exit code and report errors while
+      # others simply
+      unless File.exists?(output_file)
+        msg = <<-EOT.gsub(/(^\s+|\n)/, '')
+          This means that ffmpeg could not extract a screenshot from the video. It may indicate that
+          the video file was corrupt or that the requested frame to be captured was outside the length
+          of the video. Full command: #{command}
+        EOT
+        Transcoder.logger.error msg
+        raise TranscoderError::OutputFileNotFound, msg
+      end
+      
       Transcoder.logger.info("\nScreenshot results: #{frame_result}")
       output_file
     end
