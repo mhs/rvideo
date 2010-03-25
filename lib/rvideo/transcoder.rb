@@ -101,7 +101,7 @@ module RVideo # :nodoc:
       raise e
     rescue Exception => e
       Transcoder.logger.error("[ERROR] Unhandled RVideo exception: #{e.class} - #{e.message}\n#{e.backtrace}")
-      raise TranscoderError::UnknownError, "Unexpected RVideo error: #{e.message} (#{e.class})"
+      raise TranscoderError::UnknownError, "Unexpected RVideo error: #{e.message} (#{e.class})", e.backtrace
     end
         
     private

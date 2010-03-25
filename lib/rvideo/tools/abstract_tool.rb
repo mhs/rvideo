@@ -8,7 +8,7 @@ module RVideo # :nodoc:
       #
       
       def self.assign(cmd, options = {})
-        tool_name = cmd.split(" ").first
+        tool_name = File.split(cmd.split(" ").first).last
         begin
           tool = "RVideo::Tools::#{tool_name.classify}".constantize.send(:new, cmd, options)
         # rescue NameError, /uninitialized constant/
