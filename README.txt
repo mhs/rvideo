@@ -1,91 +1,57 @@
-RVideo
+= blah
 
-RVideo allows you to inspect and process video files.
+* FIX (url)
 
+== DESCRIPTION:
 
-Installation is a little involved. First, install the gem:
+FIX (describe your package)
 
-  sudo gem install rvideo
-  
-Next, install ffmpeg and (possibly) other related libraries. This is
-documented elsewhere on the web, and can be a headache. If you are on OS X,
-the Darwinports build is reasonably good (though not perfect). Install with:
+== FEATURES/PROBLEMS:
 
-  sudo port install ffmpeg
+* FIX (list of features or problems)
 
-Or, for a better build (recommended), add additional video- and audio-related
-libraries, like this:
+== SYNOPSIS:
 
-  sudo port install ffmpeg +lame +libogg +vorbis +faac +faad +xvid +x264 +a52
-  
-Most package management systems include a build of ffmpeg, but many include a
-poor build. So you may need to compile from scratch.
+  FIX (code sample of usage)
 
-If you want to create Flash Video files, also install flvtool2:
+== REQUIREMENTS:
 
-  sudo gem install flvtool2
+* FIX (list of requirements)
 
-Once ffmpeg and RVideo are installed, you're set. 
+== INSTALL:
 
-To inspect a file, initialize an RVideo file inspector object. See the 
-documentation for details.
+* FIX (sudo gem install, anything else)
 
-A few examples:
+== DEVELOPERS:
 
-  file = RVideo::Inspector.new(:file => "#{APP_ROOT}/files/input.mp4")
-  
-  file = RVideo::Inspector.new(:raw_response => @existing_response)
-  
-  file = RVideo::Inspector.new(:file => "#{APP_ROOT}/files/input.mp4",
-                                :ffmpeg_binary => "#{APP_ROOT}/bin/ffmpeg")
+After checking out the source, run:
 
-  file.fps        # "29.97"
-  file.duration   # "00:05:23.4"
+  $ rake newb
 
-To transcode a video, initialize a Transcoder object.
+This task will install any missing dependencies, run the tests/specs,
+and generate the RDoc.
 
-  transcoder = RVideo::Transcoder.new
+== LICENSE:
 
-Then pass a command and valid options to the execute method
+(The MIT License)
 
-  recipe = "ffmpeg -i $input_file$ -ar 22050 -ab 64 -f flv -r 29.97 -s"
-  recipe += " $resolution$ -y $output_file$"
-  recipe += "\nflvtool2 -U $output_file$"
-  begin
-    transcoder.execute(recipe, {:input_file => "/path/to/input.mp4",
-      :output_file => "/path/to/output.flv", :resolution => "640x360"})
-  rescue TranscoderError => e
-    puts "Unable to transcode file: #{e.class} - #{e.message}"
-  end
+Copyright (c) 2010 FIX
 
-If the job succeeds, you can access the metadata of the input and output
-files with:
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+'Software'), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
 
-  transcoder.original     # RVideo::Inspector object
-  transcoder.processed    # RVideo::Inspector object
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
 
-If the transcoding succeeds, the file may still have problems. RVideo
-will populate an errors array if the duration of the processed video
-differs from the duration of the original video, or if the processed
-file is unreadable.
-
-Thanks to Peter Boling for early work on RVideo.
-
-Contribute to RVideo! If you want to help out, there are a few things you can 
-do.
-
-- Use, test, and submit bugs/patches
-- We need a RVideo::Tools::Mencoder class to add mencoder support.
-- Other tool classes would be great - On2, mp4box, Quicktime (?), etc.
-- Submit other fixes, features, optimizations, and refactorings
-
-If RVideo is useful to you, you may also be interested in RMovie, another Ruby
-video library. See http://rmovie.rubyforge.org/ for more.
-
-Finally, watch for Zencoder, a commercial video transcoder built by Slantwise 
-Design. Zencoder uses RVideo for its video processing, but adds file queuing,  
-distributed transcoding, a web-based transcoder dashboard, and more. See 
-http://zencoder.tv or http://slantwisedesign.com for more.
-
-Copyright (c) 2007 Jonathan Dahl and Slantwise Design. Released under the MIT 
-license.
+THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
