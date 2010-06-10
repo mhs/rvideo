@@ -44,8 +44,8 @@ module RVideo # :nodoc:
         @filename = File.basename(file)
         @path = File.dirname(file)
         @full_filename = file
-        raise TranscoderError::InputFileNotFound, "File not found (#{file})" unless FileTest.exist?(file.gsub("\"",""))
-        @raw_response = `#{@ffmpeg_binary} -i #{@full_filename} 2>&1`
+        raise TranscoderError::InputFileNotFound, "File not found (#{@full_filename})" unless FileTest.exist?(@full_filename)
+        @raw_response = `#{@ffmpeg_binary} -i #{Shellwords.shellescape @full_filename} 2>&1`
       else
         raise ArgumentError, "Must supply either an input file or a pregenerated response" if options[:raw_response].nil? and file.nil?
       end

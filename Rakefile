@@ -8,6 +8,7 @@ require 'rake/rdoctask'
 require 'rake/contrib/rubyforgepublisher'
 require 'fileutils'
 require 'hoe'
+require 'shellwords'
 begin
   require 'spec/rake/spectask'
 rescue LoadError
